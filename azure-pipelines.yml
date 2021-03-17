@@ -18,6 +18,19 @@ steps:
   displayName: 'Select the Xamarin SDK version'
   enabled: false
 
+- task: InstallAppleProvisioningProfile@1
+  displayName: "Install iOS Provisioning Profile"
+  inputs:
+    provisioningProfileLocation: 'secureFiles'
+    provProfileSecureFile: 'test_welcome_app.mobileprovision'
+
+- task: InstallAppleCertificate@2
+  displayName: "Install iOS Certificate"
+  inputs:
+    certSecureFile: 'Certificates.p12'
+    certPwd: 'Install03'
+    keychain: 'temp'
+
 - task: NuGetToolInstaller@1
 
 - task: NuGetCommand@2
